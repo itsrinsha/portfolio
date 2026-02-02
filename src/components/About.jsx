@@ -41,12 +41,12 @@ const About = () => {
                             <p className="stat-label">Year Experience</p>
                         </div>
                         <div className="stat-item">
-                            <span className="stat-num text-gradient">10+</span>
+                            <span className="stat-num text-gradient">3</span>
                             <p className="stat-label">Projects Completed</p>
                         </div>
                         <div className="stat-item">
-                            <span className="stat-num text-gradient">5+</span>
-                            <p className="stat-label">Happy Clients</p>
+                            <span className="stat-num text-gradient"></span>
+                            <p className="stat-label"></p>
                         </div>
                     </div>
                 </motion.div>
