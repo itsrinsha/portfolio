@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { ArrowRight, FileText } from "lucide-react";
 
 const Hero = () => {
   const [showResume, setShowResume] = useState(false);
@@ -9,69 +9,70 @@ const Hero = () => {
     <>
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center pt-24 px-6 relative"
+        className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden"
       >
-        <div className="max-w-5xl w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-16">
+        <div className="max-w-6xl w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-16 md:gap-24 relative z-10">
           
           {/* Text Content */}
           <div className="flex-1 flex flex-col items-start text-left">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <p className="text-accent font-medium tracking-wide mb-3 text-sm md:text-base">
-                PORTFOLIO OF
-              </p>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-primary mb-6 leading-[1.1]">
-                Fathima Rinsha<span className="text-accent">.</span><br />
-                <span className="text-gray-400 font-normal">MERN Stack<br/>Developer</span>
+              <span className="inline-block py-1 px-3 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-secondary text-xs font-medium tracking-widest uppercase mb-6">
+                MERN Full Stack Developer
+              </span>
+              <h1 className="text-5xl md:text-[5.5rem] font-bold tracking-tighter text-primary mb-6 leading-[1.05]">
+                Fathima Rinsha <br />
+                <span className="text-secondary font-light block text-4xl md:text-[4rem] mt-2">MERN Full Stack Developer.</span>
               </h1>
             </motion.div>
 
             <motion.p 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-secondary text-lg md:text-xl max-w-md leading-relaxed mb-10 font-light"
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+              className="text-secondary text-lg md:text-xl max-w-lg leading-relaxed mb-10 font-normal"
             >
-              Crafting elegant, responsive, and user-centered digital experiences with modern web technologies.
+              Hi, I'm <strong className="text-primary font-medium">Fathima Rinsha</strong>. I specialize in building minimal, highly polished web interfaces that balance aesthetics with seamless functionality.
             </motion.p>
 
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-4"
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="flex flex-wrap items-center gap-4"
             >
               <button
                 onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-                className="bg-primary text-white px-8 py-3.5 rounded-full font-medium hover:bg-black transition-transform hover:scale-105 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+                className="group bg-primary text-[var(--color-bg)] px-7 py-3.5 rounded-xl font-medium hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center gap-2 shadow-sm"
               >
-                Selected Works
+                View Projects
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={() => setShowResume(true)}
-                className="bg-white text-primary border border-gray-200 px-8 py-3.5 rounded-full font-medium hover:bg-gray-50 transition-colors flex items-center gap-2 cursor-pointer"
+                className="bg-transparent text-primary border border-gray-200 dark:border-white/10 px-7 py-3.5 rounded-xl font-medium hover:bg-gray-50 dark:hover:bg-white/5 hover:border-gray-300 dark:hover:border-white/20 hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center gap-2"
               >
+                <FileText size={16} className="text-secondary" />
                 Resume
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
               </button>
             </motion.div>
           </div>
 
           {/* Image */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             className="flex-1 w-full max-w-sm flex justify-center md:justify-end relative"
           >
-            <div className="absolute inset-0 bg-accent/5 rounded-3xl -rotate-6 transform scale-105 z-0"></div>
+            <div className="absolute inset-0 bg-gray-100 dark:bg-white/5 rounded-[2rem] -rotate-3 transform scale-105 z-0 transition-transform duration-700 hover:rotate-0"></div>
             <img
               src="./profile.JPG"
-              alt="Rinsha"
-              className="w-full aspect-[4/5] object-cover rounded-3xl shadow-2xl relative z-10 transition-all duration-700"
+              alt="Fathima Rinsha"
+              className="w-full aspect-[4/5] object-cover rounded-[2rem] shadow-sm relative z-10 filter grayscale-[20%] hover:grayscale-0 transition-all duration-700"
               onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=Rinsha&size=500&background=F3F4F6&color=111111'; }}
             />
           </motion.div>
@@ -85,26 +86,27 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 md:p-10"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-md p-4 md:p-8"
             onClick={() => setShowResume(false)}
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl h-full max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+              className="relative w-full max-w-5xl h-[85vh] bg-[var(--color-bg)] rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-white/10"
             >
-              <div className="flex justify-between items-center p-4 border-b border-gray-100 bg-gray-50/50">
-                <h3 className="font-semibold text-primary px-2">Rinsha_Resume.pdf</h3>
+              <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-white/10">
+                <h3 className="font-medium text-primary">Rinsha_Resume.pdf</h3>
                 <button
                   onClick={() => setShowResume(false)}
-                  className="p-2 text-gray-500 hover:text-primary hover:bg-gray-200 rounded-full transition-colors"
+                  className="p-2 text-secondary hover:text-primary hover:bg-gray-100 dark:hover:bg-white/5 rounded-full transition-colors"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                  ✕
                 </button>
               </div>
-              <div className="flex-1 w-full bg-gray-100">
+              <div className="flex-1 w-full bg-gray-100 dark:bg-white/5">
                 <iframe
                   src="/Rinsha_Resume.pdf#toolbar=0"
                   className="w-full h-full border-none"
@@ -117,60 +119,6 @@ const Hero = () => {
       </AnimatePresence>
     </>
   );
-=======
-import React from 'react';
-import { Github, Linkedin, Instagram } from 'lucide-react';
-import heroImg from '../assets/IMG_5462 (1).JPG';
-import { motion } from 'framer-motion';
-
-const Hero = () => {
-    return (
-        <section id="home" className="hero-section">
-            <div className="container hero-container">
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="hero-content"
-                >
-                    <h2 className="hero-subtitle">Hello, I'm</h2>
-                    <h1 className="hero-title">Rinsha</h1>
-                    <h3 className="hero-role">
-                        I'm a <span className="text-gradient">Software Developer</span>
-                    </h3>
-
-                    <div className="social-links">
-                        <a href="https://github.com/rinshafathima9961-commits/rinsha" target="_blank" rel="noopener noreferrer" className="social-icon">
-                            <Github size={24} />
-                        </a>
-                        <a href="https://www.linkedin.com/in/fathima-rinsha-ak-ba2b13373/" target="_blank" rel="noopener noreferrer" className="social-icon">
-                            <Linkedin size={24} />
-                        </a>
-                        <a href="https://www.instagram.com/rinshaa_ft/?hl=en" target="_blank" rel="noopener noreferrer" className="social-icon">
-                            <Instagram size={24} />
-                        </a>
-                    </div>
-
-                    <div className="hero-btns">
-                        <a href="#projects" className="btn-primary">View My Work</a>
-                        <a href="/resume.pdf" download className="btn-outline">Download CV</a>
-                    </div>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8 }}
-                    className="hero-image-wrapper"
-                >
-                    <div className="image-blob">
-                        <img src={heroImg} alt="Rinsha" className="hero-image" />
-                    </div>
-                </motion.div>
-            </div>
-        </section>
-    );
->>>>>>> 0b8e4a5dd17f064ea47dbc194cc158a2f5209b82
 };
 
 export default Hero;

@@ -1,115 +1,144 @@
-<<<<<<< HEAD
 import { motion } from "framer-motion";
+import { ExternalLink, Github } from "lucide-react";
+
+// Temporary placeholder images since the local images were incorrect/removed.
+// Replace these with your actual images when ready!
+const project1 = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000"; 
+const project2 = "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000"; // Women's Fashion E-commerce placeholder
+const project3 = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000"; 
+const project4 = "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1000"; // Travel placeholder
 
 const projects = [
   {
     title: "Learnify E-Learning Platform",
-    description: "A comprehensive e-learning SaaS platform featuring dedicated student and instructor portals. Includes real-time socket messaging, advanced course lifecycle management, admin moderation tools, and detailed course metrics.",
-    tech: ["React", "Node.js", "Socket.io", "Tailwind CSS"],
-    github: "#",
+    description: "A complete MERN stack e-learning ecosystem tailored for modern education. Features encompass interactive student and instructor dashboards, real-time messaging, and sophisticated course management.",
+    tech: ["React", "Node.js", "MongoDB", "Socket.io"],
+    image: project1,
+    github: "https://github.com/itsrinsha",
     live: "#",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: "FinLayer Fintech Dashboard",
-    description: "A luxury, high-end financial SaaS dashboard with a premium dark-theme aesthetic. Designed for high-density data visualization, featuring interactive charts, summary cards, and a sophisticated sidebar-based navigation layout.",
-    tech: ["React", "Tailwind CSS", "Recharts", "Framer Motion"],
-    github: "#",
+    title: "Glanzio E-Commerce",
+    description: "A premium, fully-responsive women's fashion ecommerce application designed for optimal conversion. Includes robust cart management, secure authentication, and a seamless checkout experience.",
+    tech: ["React", "Redux", "Tailwind CSS", "Express"],
+    image: project2,
+    github: "https://github.com/itsrinsha",
     live: "#",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: "Glanzio Fashion Store",
-    description: "A modern, fully responsive e-commerce platform specializing in women's fashion. Built with clean product displays, robust shopping cart functionality, and a seamless checkout flow.",
-    tech: ["React", "Redux", "Tailwind CSS", "JSON Server"],
-    github: "#",
+    title: "FinLayer Finance Dashboard",
+    description: "A highly polished finance analytics dashboard providing clear data visualization, expense tracking, and transactional history with a focus on a high-density, usable interface.",
+    tech: ["React", "Recharts", "Framer Motion", "Tailwind"],
+    image: project3,
+    github: "https://github.com/itsrinsha",
     live: "#",
-    image: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: "Modern Navbar Design",
-    description: "A sleek, frontend-focused exploration of modern navigation patterns, emphasizing glassmorphism, responsive behavior, and smooth interactive states.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    github: "#",
+    title: "EaseMyTrip Clone",
+    description: "A pixel-perfect frontend UI clone of the EaseMyTrip travel booking platform. Built entirely with core web technologies, focusing on precise, responsive layouts and semantic markup.",
+    tech: ["HTML5", "CSS3"],
+    image: project4,
+    github: "https://github.com/itsrinsha",
     live: "#",
-    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    title: "Web Clone Project",
-    description: "A detailed UI/UX clone focusing on pixel-perfect alignment, complex layout structures, and replicating high-end production environments.",
-    tech: ["HTML", "CSS", "Tailwind"],
-    github: "#",
-    live: "#",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800"
   },
 ];
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-32 px-6">
-      <div className="max-w-5xl mx-auto">
+    <section
+      id="projects"
+      className="py-32 px-6 bg-[var(--color-bg)] border-t border-gray-200 dark:border-white/5"
+    >
+      <div className="max-w-6xl mx-auto">
+
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-20 text-center"
         >
-          <h2 className="text-sm font-medium tracking-widest text-secondary uppercase mb-3">03. Selected Works</h2>
-          <h3 className="text-3xl md:text-5xl font-bold text-primary tracking-tight">
-            Crafted with passion.
-          </h3>
+          <p className="uppercase tracking-[4px] text-sm text-secondary mb-4">
+            Portfolio
+          </p>
+
+          <h2 className="text-5xl md:text-6xl font-bold text-primary">
+            Selected Projects
+          </h2>
         </motion.div>
 
-        <div className="flex flex-col gap-32">
+        {/* Projects */}
+        <div className="flex flex-col gap-28">
           {projects.map((project, index) => (
-            <div 
-              key={index} 
-              className={`flex flex-col md:flex-row gap-12 lg:gap-20 items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+            <div
+              key={index}
+              className={`flex flex-col md:flex-row gap-14 items-center ${
+                index % 2 !== 0 ? "md:flex-row-reverse" : ""
+              }`}
             >
-              {/* Image Container */}
-              <motion.div 
+
+              {/* Image */}
+              <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
-                className="w-full md:w-3/5 group relative overflow-hidden rounded-2xl bg-gray-100 aspect-[4/3] shadow-sm"
+                className="w-full md:w-1/2 overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 shadow-sm bg-[var(--color-card)]"
               >
-                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover hover:scale-105 transition duration-700 aspect-video"
                 />
               </motion.div>
 
-              {/* Content Container */}
-              <motion.div 
+              {/* Content */}
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="w-full md:w-2/5 flex flex-col items-start"
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="w-full md:w-1/2"
               >
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className="text-xs font-medium uppercase tracking-wider text-accent bg-accent/5 px-3 py-1 rounded-full">
-                      {tech}
+
+                <div className="flex flex-wrap gap-3 mb-5">
+                  {project.tech.map((item, i) => (
+                    <span
+                      key={i}
+                      className="px-4 py-1 text-sm rounded-full bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 border border-transparent dark:border-white/10"
+                    >
+                      {item}
                     </span>
                   ))}
                 </div>
-                <h4 className="text-3xl font-semibold text-primary mb-4">{project.title}</h4>
-                <p className="text-secondary text-base leading-relaxed mb-8 font-light">
+
+                <h3 className="text-4xl font-bold text-primary mb-5">
+                  {project.title}
+                </h3>
+
+                <p className="text-secondary leading-relaxed mb-8">
                   {project.description}
                 </p>
-                <div className="flex gap-6">
-                  <a href={project.live} className="group flex items-center gap-2 text-sm font-medium text-primary hover:text-accent transition-colors pb-1 border-b border-gray-300 hover:border-accent">
-                    View Project
-                    <svg className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+
+                <div className="flex items-center gap-6">
+
+                  <a
+                    href={project.live}
+                    className="flex items-center gap-2 text-primary hover:text-accent transition"
+                  >
+                    <ExternalLink size={18} />
+                    Live Demo
                   </a>
-                  <a href={project.github} className="group flex items-center gap-2 text-sm font-medium text-secondary hover:text-primary transition-colors pb-1 border-b border-transparent hover:border-gray-300">
+
+                  <a
+                    href={project.github}
+                    className="flex items-center gap-2 text-primary hover:text-accent transition"
+                  >
+                    <Github size={18} />
                     Source Code
                   </a>
+
                 </div>
               </motion.div>
             </div>
@@ -118,74 +147,6 @@ const Projects = () => {
       </div>
     </section>
   );
-=======
-import React from 'react';
-import { motion } from 'framer-motion';
-import project1 from '../assets/Screenshot 2025-07-16 221103.png';
-import project2 from '../assets/Screenshot 2025-07-21 061736.png';
-import project3 from '../assets/ecommerce.png';
-import { ExternalLink, Github } from 'lucide-react';
-
-const Projects = () => {
-    const projects = [
-        {
-            title: 'MERN Ecommerce Platform',
-            image: project3,
-            category: 'Full Stack',
-            github: 'https://github.com/rinshafathima9961-commits/rinsha',
-            demo: '#',
-        },
-        {
-            title: 'Modern Navbar Design',
-            image: project1,
-            category: 'Frontend',
-            github: '#',
-            demo: '#',
-        },
-        {
-            title: 'Web Clone Project',
-            image: project2,
-            category: 'UI/UX',
-            github: '#',
-            demo: '#',
-        }
-    ];
-
-    return (
-        <section id="projects" className="projects-section">
-            <div className="container">
-                <h2 className="section-title">Latest <span className="text-gradient">Projects</span></h2>
-
-                <div className="projects-grid">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={index}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
-                            className="project-card glass-card"
-                        >
-                            <div className="project-img-wrapper">
-                                <img src={project.image} alt={project.title} className="project-img" />
-                                <div className="project-overlay">
-                                    <div className="project-links">
-                                        <a href={project.github} className="icon-btn"><Github size={20} /></a>
-                                        <a href={project.demo} className="icon-btn"><ExternalLink size={20} /></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="project-info">
-                                <span className="project-category text-gradient">{project.category}</span>
-                                <h3 className="project-title">{project.title}</h3>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
->>>>>>> 0b8e4a5dd17f064ea47dbc194cc158a2f5209b82
 };
 
 export default Projects;

@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -9,14 +8,14 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 30);
       
       const sections = ["home", "about", "skills", "projects", "contact"];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top >= -200 && rect.top <= 300) {
+          if (rect.top >= -100 && rect.top <= 200) {
             setActiveSection(section);
             break;
           }
@@ -36,35 +35,38 @@ const Navbar = () => {
   const navLinks = ["home", "about", "skills", "projects", "contact"];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/70 backdrop-blur-md border-b border-gray-200/50 py-3" : "bg-transparent py-5"}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${scrolled ? "bg-white/60 dark:bg-black/60 backdrop-blur-md border-b border-gray-200/50 dark:border-white/10 py-4 shadow-sm" : "bg-transparent py-6"}`}>
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
         <motion.h2
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-xl font-bold tracking-tight cursor-pointer text-primary"
+          transition={{ duration: 0.5 }}
+          className="text-lg font-bold tracking-tight cursor-pointer text-primary"
           onClick={() => scrollToSection("home")}
         >
           Fathima Rinsha<span className="text-accent">.</span>
         </motion.h2>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 text-sm font-medium items-center">
+        <ul className="hidden md:flex gap-10 text-sm font-medium items-center">
           {navLinks.map((item, index) => (
             <motion.li
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
               key={item}
               onClick={() => scrollToSection(item)}
-              className="relative cursor-pointer text-secondary hover:text-primary transition-colors capitalize"
+              className="relative cursor-pointer text-secondary hover:text-primary transition-colors capitalize group"
             >
               {item}
-              {activeSection === item && (
+              {activeSection === item ? (
                 <motion.div
                   layoutId="activeIndicator"
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
+              ) : (
+                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
               )}
             </motion.li>
           ))}
@@ -72,7 +74,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Icon */}
         <button
-          className="md:hidden text-2xl text-primary z-50"
+          className="md:hidden text-2xl text-primary z-50 p-2"
           onClick={() => setOpen(!open)}
         >
           {open ? "✕" : "☰"}
@@ -80,103 +82,30 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {open && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 py-6 px-6 flex flex-col gap-4 shadow-xl md:hidden"
-        >
-          {navLinks.map((item) => (
-            <p
-              key={item}
-              onClick={() => scrollToSection(item)}
-              className={`cursor-pointer text-lg capitalize font-medium ${activeSection === item ? 'text-accent' : 'text-secondary'}`}
-            >
-              {item}
-            </p>
-          ))}
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="absolute top-full left-0 w-full bg-white/95 dark:bg-black/95 backdrop-blur-xl border-b border-gray-100 dark:border-white/10 shadow-xl overflow-hidden md:hidden"
+          >
+            <div className="flex flex-col py-6 px-8 gap-6">
+              {navLinks.map((item) => (
+                <p
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`cursor-pointer text-lg capitalize font-medium transition-colors ${activeSection === item ? 'text-accent' : 'text-secondary hover:text-primary'}`}
+                >
+                  {item}
+                </p>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
-=======
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
-import logo from '../assets/logo.png';
-
-const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'About', href: '#about' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Contact', href: '#contact' },
-    ];
-
-    return (
-        <nav className={`navbar-root ${scrolled ? 'scrolled' : ''}`}>
-            <div className="container navbar-container">
-                <a href="#home" className="nav-logo">
-                    <img src={logo} alt="Logo" className="logo-img" />
-                    <span className="logo-text text-gradient">RINSHA</span>
-                </a>
-
-                {/* Desktop Menu */}
-                <div className="nav-links">
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            className="nav-link"
-                        >
-                            {link.name}
-                            <span className="link-underline"></span>
-                        </a>
-                    ))}
-                    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="nav-link">
-                        Resume
-                        <span className="link-underline"></span>
-                    </a>
-                </div>
-
-                {/* Mobile Menu Button */}
-                <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
-            </div>
-
-            {/* Mobile Menu */}
-            {isOpen && (
-                <div className="mobile-menu animate-fade-in">
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            className="mobile-link"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            {link.name}
-                        </a>
-                    ))}
-                    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="mobile-link" onClick={() => setIsOpen(false)}>
-                        Resume
-                    </a>
-                </div>
-            )}
-        </nav>
-    );
->>>>>>> 0b8e4a5dd17f064ea47dbc194cc158a2f5209b82
 };
 
 export default Navbar;
